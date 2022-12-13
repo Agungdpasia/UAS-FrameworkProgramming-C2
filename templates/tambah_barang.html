@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block isinya %}
+
+<div class="container">
+    <div class="row">
+        <div-class="col-md-2">
+            <form action="" method="post">
+                {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" class="btn btn-primary">Tambah</button>
+        </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block isinya %}
+
+<div class="container">
+ <h1 class="align-center">Data Base Pelanggan</h1>
+ <table border="1" class="table">
+    <tr>
+        <th>Nomer</th>
+        <th>Nama</th>
+        <th>Jenis Pembelian</th>
+        <th>Tanggal Pembelian</th>
+    </tr>
+    {% for Datapelanggan in datapelanggan %}
+    <tr>
+        <td>{{Datapelanggan.no}}</td>
+        <td>{{Datapelanggan.nama}}</td>
+        <td>{{Datapelanggan.jenispembelian}}</td>
+        <td>{{Datapelanggan.tglbeli}}</td>
+    </tr>
+    {% endfor %}
+ </table>
+</div>
+ {% endblock %}
