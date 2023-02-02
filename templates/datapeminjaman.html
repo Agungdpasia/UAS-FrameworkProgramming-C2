@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block isinya %}
+
+<div class="container">
+ <h1 class="align-center">Data Peminjam</h1>
+ <p><a href="/regpeminjaman" class="btn btn-primary">Tambah Peminjam</a></p>
+    {% for message in messages %}
+    {% if message %}
+    <div class="alert alert-success">{{message}}</div>
+    {% endif %}
+    {% endfor %}
+ <table border="1" class="table table-success table-striped">
+    <tr>
+        <th>Nomer</th>
+        <th>Nama</th>
+        <th>Jenis Buku</th>
+        <th>Tanggal Pinjam</th>
+        <th>Aksi</th>
+    </tr>
+    {% for Datapeminjaman in datapeminjaman %}
+    <tr>
+        <td>{{Datapeminjaman.no}}</td>
+        <td><a href="{% url 'ubah_lg' Datapeminjaman.id %}">{{Datapeminjaman.nama}}</a></td>
+        <td>{{Datapeminjaman.jenisbuku}}</td>
+        <td>{{Datapeminjaman.tglpinjam}}</td>
+        <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus-{{ Datapeminjaman.id }}">
+            Hapus
+        </button></td>
+    <!-- Modal -->
+    <div class="modal fade" id="hapus-{{ Datapeminjaman.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Yakin Akan Di Hapus ?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Nama Peminjaman : {{ Datapeminjaman.nama }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <a href="{% url 'hapus_lg' Datapeminjaman.id %}" class="btn btn-danger">Yakin</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </tr>
+    {% endfor %}
+ </table>
+</div>
+ {% endblock %}
